@@ -1,7 +1,29 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 
-class MyPlan_Page extends StatelessWidget {
+class MyPlan_Page extends StatefulWidget {
+  const MyPlan_Page({Key? key}) : super(key: key);
+
+  @override
+  State<MyPlan_Page> createState() => _MyPlan_PageState();
+}
+
+class _MyPlan_PageState extends State<MyPlan_Page> {
+  late TextEditingController controller;
+  String name = '';
+
+  @override
+  void initState() {
+    super.initState();
+    controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose;
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final drawer = buildDrawer(context);
@@ -16,13 +38,47 @@ class MyPlan_Page extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('My Plans')),
       drawer: drawer,
-      body: body,
-      floatingActionButton:
-          FloatingActionButton(child: Icon(Icons.add), onPressed: testButton),
+      body: Container(
+          padding: EdgeInsets.all(32),
+          child: Column(children: [
+            Row(children: [
+              Expanded(
+                child: Text('Name: ',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+              ),
+              const SizedBox(width: 12),
+              Text(name)
+            ])
+          ])),
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () async {
+            final name = await createPlan();
+            if (name == null || name.isEmpty) return;
+
+            setState(() => this.name = name);
+          }),
     );
   }
 
-  void testButton() {
-    print('Testing..');
+  Future<String?> createPlan() => showDialog<String>(
+      context: context,
+      builder: (context) => AlertDialog(
+            title: Text('Name of Plan:'),
+            content: TextField(
+              autofocus: true,
+              decoration: InputDecoration(hintText: 'What is it about?'),
+            ),
+            actions: [
+              TextButton(
+                child: Text('Submit'),
+                onPressed: submit,
+              )
+            ],
+          ));
+
+  void submit() {
+    Navigator.of(context).pop(controller.text);
+    controller.clear();
   }
 }
