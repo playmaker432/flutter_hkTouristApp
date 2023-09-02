@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 
-class MyPlan_Page extends StatefulWidget {
-  const MyPlan_Page({Key? key}) : super(key: key);
+class MyPlanPage extends StatefulWidget {
+  const MyPlanPage({Key? key}) : super(key: key);
 
   @override
-  State<MyPlan_Page> createState() => _MyPlan_PageState();
+  State<MyPlanPage> createState() => _MyPlan_PageState();
 }
 
-class _MyPlan_PageState extends State<MyPlan_Page> {
+class _MyPlan_PageState extends State<MyPlanPage> {
   late TextEditingController controller;
   String name = '';
 
@@ -40,16 +40,11 @@ class _MyPlan_PageState extends State<MyPlan_Page> {
       drawer: drawer,
       body: Container(
           padding: EdgeInsets.all(32),
-          child: Column(children: [
-            Row(children: [
-              Expanded(
-                child: Text('Name: ',
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-              ),
-              const SizedBox(width: 12),
-              Text(name)
-            ])
-          ])),
+          child: Column(
+            children: [
+              Text(name),
+            ],
+          )),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           onPressed: () async {

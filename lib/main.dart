@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => HomePage(),
         // Change p1 as homepage
         '/hkmap': (context) => HomePage(),
-        '/p2': (context) => MyPlan_Page(),
+        '/p2': (context) => MyPlanPage(),
         '/p3': (context) => WeatherPage(),
         '/aboutus': (context) => AboutPage(),
       },
