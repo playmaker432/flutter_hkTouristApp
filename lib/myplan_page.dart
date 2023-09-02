@@ -17,6 +17,12 @@ class MyPlan_Page extends StatelessWidget {
       appBar: AppBar(title: Text('My Plans')),
       drawer: drawer,
       body: body,
+      floatingActionButton:
+          FloatingActionButton(child: Icon(Icons.add), onPressed: testButton),
     );
+  }
+
+  void testButton() {
+    print('Testing..');
   }
 }

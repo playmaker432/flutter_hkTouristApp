@@ -11,6 +11,8 @@ class HomePage extends StatelessWidget {
         title: Text('Hong Kong Tourist App'),
       ),
       drawer: drawer,
+      floatingActionButton:
+          FloatingActionButton(child: Icon(Icons.add), onPressed: testButton),
       body: ListView(
         children: <Widget>[
           _buildAttractionCard(
@@ -28,6 +30,10 @@ class HomePage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void testButton() {
+    print('Testing...');
   }
 
   Widget _buildAttractionCard(
