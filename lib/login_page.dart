@@ -1,81 +1,66 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'main.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
-
   @override
-  State<LoginPage> createState() => _Login_PageState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _Login_PageState extends State<LoginPage> {
-  late TextEditingController controller;
-  String name = '';
-
-  @override
-  void initState() {
-    super.initState();
-    controller = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    controller.dispose;
-    super.dispose();
-  }
+class _LoginPageState extends State<LoginPage> {
+  final GoogleSignIn googleSignIn = GoogleSignIn();
 
   @override
   Widget build(BuildContext context) {
     final drawer = buildDrawer(context);
 
-    final body = Center(
-      child: Text(
-        'Login',
-        style: TextStyle(fontSize: 32, color: Colors.blue),
-      ),
-    );
-
     return Scaffold(
-      appBar: AppBar(title: Text('Login')),
-      drawer: drawer,
-      body: Container(
-          padding: EdgeInsets.all(32),
+      appBar: AppBar(
+        title: const Text('Login'),
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(name),
+              Text(
+                'Login',
+                style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.width * 0.1,
+                ),
+              ),
+              SizedBox(height: 25),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Account',
+                ),
+              ),
+              TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                ),
+              ),
+              SizedBox(height: 75),
+              ElevatedButton.icon(
+                onPressed: signInWithGoogle,
+                icon: Icon(Icons.g_mobiledata),
+                label: Text('Login with Google'),
+              ),
             ],
-          )),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () async {
-            final name = await createPlan();
-            if (name == null || name.isEmpty) return;
-
-            setState(() => this.name = name);
-          }),
+          ),
+        ),
+      ),
+      drawer: drawer,
     );
   }
 
-  Future<String?> createPlan() => showDialog<String>(
-      context: context,
-      builder: (context) => AlertDialog(
-            title: Text('Name of Plan:'),
-            content: TextField(
-              autofocus: true,
-              decoration: InputDecoration(hintText: 'What is it about?'),
-            ),
-            actions: [
-              TextButton(
-                child: Text('Submit'),
-                onPressed: submit,
-              )
-            ],
-          ));
-
-  void submit() {
-    Navigator.of(context).pop(controller.text);
-    controller.clear();
+  Future<void> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    } catch (error) {
+      print(error);
+    }
   }
-
-  void submit_demo() {}
 }
