@@ -2,6 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'main.dart';
+import 'package:intl/intl.dart';
 
 class WeatherModel {
   String? generalSituation;
@@ -65,29 +66,35 @@ class _WeatherScreenState extends State<WeatherPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              WeatherInfoCard(
+              WeatherInfoTile(
                 title: 'General Situation',
                 content: weather_data.generalSituation ?? '',
               ),
-              SizedBox(height: 16.0),
-              WeatherInfoCard(
+              Divider(), // Add a divider for separation
+              WeatherInfoTile(
                 title: 'Forecast Period',
                 content: weather_data.forecastPeriod ?? '',
               ),
-              SizedBox(height: 16.0),
-              WeatherInfoCard(
+              Divider(),
+              WeatherInfoTile(
                 title: 'Forecast Description',
                 content: weather_data.forecastDesc ?? '',
               ),
-              SizedBox(height: 16.0),
-              WeatherInfoCard(
+              Divider(),
+              WeatherInfoTile(
                 title: 'Outlook',
                 content: weather_data.outlook ?? '',
               ),
-              SizedBox(height: 16.0),
-              WeatherInfoCard(
-                title: 'Update Time',
-                content: weather_data.updateTime ?? '',
+              SizedBox(height: 25.0),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  'Update Time: ${formatUpdateTime(weather_data.updateTime ?? '')}',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ],
           ),
@@ -120,39 +127,43 @@ class _WeatherScreenState extends State<WeatherPage> {
       print('Error connecting to API: $e');
     }
   }
+
+  String formatUpdateTime(String updateTime) {
+    try {
+      final parsedDateTime = DateTime.parse(updateTime);
+      final formattedDateTime =
+          DateFormat('dd-MM-yy, HH:mm:ss').format(parsedDateTime);
+      return formattedDateTime;
+    } catch (e) {
+      return 'N/A';
+    }
+  }
 }
 
-class WeatherInfoCard extends StatelessWidget {
+class WeatherInfoTile extends StatelessWidget {
   final String title;
   final String content;
 
-  WeatherInfoCard({required this.title, required this.content});
+  WeatherInfoTile({required this.title, required this.content});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 4.0,
-      margin: EdgeInsets.symmetric(vertical: 8.0),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 8.0),
-            Text(
-              content,
-              style: TextStyle(fontSize: 16.0),
-            ),
-          ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: TextStyle(
+            fontSize: 18.0,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-      ),
+        SizedBox(height: 8.0),
+        Text(
+          content,
+          style: TextStyle(fontSize: 16.0),
+        ),
+      ],
     );
   }
 }
