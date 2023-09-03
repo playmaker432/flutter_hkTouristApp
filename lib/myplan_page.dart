@@ -82,12 +82,12 @@ class _MyPlan_PageState extends State<MyPlanPage> {
         appBar: AppBar(
           title: Text("My Plans"),
           // leading: Icon(FontAwesomeIcons.dragon),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(FontAwesomeIcons.search),
-              onPressed: null,
-            )
-          ],
+          // actions: <Widget>[
+          //   IconButton(
+          //     icon: Icon(FontAwesomeIcons.search),
+          //     onPressed: null,
+          //   )
+          // ],
           bottom: TabBar(
             tabs: tabList.map((choice) {
               return Tab(
