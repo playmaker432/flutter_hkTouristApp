@@ -12,8 +12,64 @@ class MyPlanPage extends StatefulWidget {
 }
 
 class _MyPlan_PageState extends State<MyPlanPage> {
-  SnackBar _snackBar1 = SnackBar(content: Text("You Click the Button!"));
+  SnackBar _snackBar1 = SnackBar(content: Text("The plan has been created!"));
   List<Widget> listTiles = []; // List to store ListTile widgets
+
+  // Controller for the input fields
+  TextEditingController titleController = TextEditingController();
+  TextEditingController subtitleController = TextEditingController();
+
+  // Function to show a pop-up dialog for user input
+  Future<void> _showInputDialog(BuildContext context) async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Create a New Plan'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              TextFormField(
+                controller: titleController,
+                decoration: InputDecoration(labelText: 'Title'),
+              ),
+              TextFormField(
+                controller: subtitleController,
+                decoration: InputDecoration(labelText: 'Subtitle'),
+              ),
+            ],
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Submit'),
+              onPressed: () {
+                // Create a new ListTile with custom title and subtitle
+                setState(() {
+                  listTiles.add(
+                    Card(
+                      elevation: 5, // Shadow elevation
+                      margin: EdgeInsets.all(10), // Margin around the Card
+                      child: ListTile(
+                        title: Text(titleController.text),
+                        subtitle: Text(subtitleController.text),
+                      ),
+                    ),
+                  );
+                });
+
+                // Clear the input fields
+                titleController.clear();
+                subtitleController.clear();
+
+                // Close the dialog
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +109,12 @@ class _MyPlan_PageState extends State<MyPlanPage> {
                   ),
                   SizedBox(
                       height: 10.0), // Space between the icon and ListTiles
-                  // Display the ListTiles added dynamically
-                  Column(children: listTiles),
+                  // Make the list of ListTiles scrollable
+                  Expanded(
+                      child: SingleChildScrollView(
+                          child: Column(
+                    children: listTiles,
+                  ))),
                 ],
               ),
             );
@@ -66,15 +126,18 @@ class _MyPlan_PageState extends State<MyPlanPage> {
             ScaffoldMessenger.of(context).removeCurrentSnackBar();
             ScaffoldMessenger.of(context).showSnackBar(_snackBar1);
             // Add a new ListTile when the button is pressed
-            setState(() {
-              listTiles.add(
-                ListTile(
-                  title: Text("New Item"),
-                  subtitle: Text("This is a new item added dynamically."),
-                  leading: Icon(Icons.star), // Customize the leading icon
-                ),
-              );
-            });
+            // setState(() {
+            //   listTiles.add(
+            //     ListTile(
+            //       title: Text("New Item"),
+            //       subtitle: Text("This is a new item added dynamically."),
+            //       leading: Icon(Icons.star), // Customize the leading icon
+            //     ),
+            //   );
+            // });
+
+            // Show the input dialog when the button is pressed
+            _showInputDialog(context);
           },
         ),
       ),
