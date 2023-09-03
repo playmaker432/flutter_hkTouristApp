@@ -102,7 +102,7 @@ class _MyPlan_PageState extends State<MyPlanPage> {
       child: Scaffold(
         drawer: drawer,
         appBar: AppBar(
-          title: Text("AppBar Title"),
+          title: Text("My Plans"),
           // leading: Icon(FontAwesomeIcons.dragon),
           actions: <Widget>[
             IconButton(

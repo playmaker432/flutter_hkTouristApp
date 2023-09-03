@@ -42,12 +42,12 @@ Widget buildDrawer(BuildContext context) {
   return Drawer(
     child: ListView(
       children: <Widget>[
-        // UserAccountsDrawerHeader(
-        //   accountName: Text('Jen'),
-        //   accountEmail: Text('userGmail@gmail.com'),
-        //   // currentAccountPicture: Image.asset('assets/waiting.gif'),
-        //   decoration: BoxDecoration(color: Colors.deepOrange),
-        // ),
+        UserAccountsDrawerHeader(
+          accountName: Text('Jen'),
+          accountEmail: Text('userGmail@gmail.com'),
+          // currentAccountPicture: Image.asset('assets/waiting.gif'),
+          decoration: BoxDecoration(color: Colors.grey),
+        ),
         _createDrawerItem(context,
             text: 'Hong Kong Map', icon: Icons.map, route: '/hkmap'),
         _createDrawerItem(context,
@@ -57,9 +57,11 @@ Widget buildDrawer(BuildContext context) {
         _createDrawerItem(context,
             text: 'Weather', icon: Icons.wb_sunny, route: '/weather'),
         _createDrawerItem(context,
-            text: 'Login', icon: Icons.login, route: '/login'),
+            text: 'Settings', icon: Icons.settings, route: '/aboutus'),
         _createDrawerItem(context,
-            text: 'About', icon: Icons.info, route: '/aboutus')
+            text: 'About', icon: Icons.info, route: '/aboutus'),
+        _createDrawerItem(context,
+            text: 'Login', icon: Icons.login, route: '/login'),
       ],
     ),
   );
@@ -68,7 +70,7 @@ Widget buildDrawer(BuildContext context) {
 Widget _createDrawerItem(BuildContext context,
     {required String text, IconData? icon, required String route}) {
   return Container(
-      padding: EdgeInsets.all(16),
+      padding: EdgeInsets.all(10),
       child: ListTile(
           leading: icon != null ? Icon(icon) : null,
           title: Text(text),
