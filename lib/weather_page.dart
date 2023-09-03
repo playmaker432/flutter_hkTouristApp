@@ -43,10 +43,30 @@ class WeatherPage extends StatefulWidget {
 class _WeatherScreenState extends State<WeatherPage> {
   WeatherModel weather_data = WeatherModel();
 
+  int _selectedIndex = 0;
+  static const List<Widget> _widgetOption = <Widget>[
+    Icon(
+      Icons.star,
+      size: 200.0,
+    ),
+    Icon(
+      Icons.mood_bad,
+      size: 200.0,
+    ),
+    Icon(
+      Icons.wb_sunny,
+      size: 200.0,
+    ),
+  ];
+
   @override
   void initState() {
     super.initState();
     fetchWeatherData();
+  }
+
+  void _onItemTap(int index) {
+    setState(() => _selectedIndex = index);
   }
 
   @override
@@ -100,6 +120,13 @@ class _WeatherScreenState extends State<WeatherPage> {
           ),
         ),
       ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   items: [
+      //     BottomNavigationBarItem(icon: Icon(Icons.star)),
+      //     BottomNavigationBarItem(icon: Icon(Icons.mood_bad)),
+      //     BottomNavigationBarItem(icon: Icon(Icons.wb_sunny)),
+      //   ],
+      // )
     );
   }
 
