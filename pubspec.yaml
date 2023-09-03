@@ -19,6 +19,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  font_awesome_flutter: any
   
   dio: ^4.0.0
   flutter_polyline_points: ^0.2.6

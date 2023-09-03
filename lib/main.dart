@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:helloworld/login_page.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'myplan_page.dart';
 import 'about_page.dart';
 import 'weather_page.dart';
@@ -27,8 +29,9 @@ class MyApp extends StatelessWidget {
         '/': (context) => HomePage(),
         // Change p1 as homepage
         '/hkmap': (context) => HomePage(),
-        '/p2': (context) => MyPlanPage(),
-        '/p3': (context) => WeatherPage(),
+        '/myplans': (context) => MyPlanPage(title: 'My Plans'),
+        '/weather': (context) => WeatherPage(),
+        '/login': (context) => LoginPage(),
         '/aboutus': (context) => AboutPage(),
       },
     );
@@ -39,12 +42,22 @@ Widget buildDrawer(BuildContext context) {
   return Drawer(
     child: ListView(
       children: <Widget>[
+        // UserAccountsDrawerHeader(
+        //   accountName: Text('Jen'),
+        //   accountEmail: Text('userGmail@gmail.com'),
+        //   // currentAccountPicture: Image.asset('assets/waiting.gif'),
+        //   decoration: BoxDecoration(color: Colors.deepOrange),
+        // ),
         _createDrawerItem(context,
             text: 'Hong Kong Map', icon: Icons.map, route: '/hkmap'),
         _createDrawerItem(context,
-            text: 'My Plans', icon: Icons.list, route: '/p2'),
+            text: 'My Plans',
+            icon: FaIcon(FontAwesomeIcons.locationArrow).icon,
+            route: '/myplans'),
         _createDrawerItem(context,
-            text: 'Weather', icon: Icons.wb_sunny, route: '/p3'),
+            text: 'Weather', icon: Icons.wb_sunny, route: '/weather'),
+        _createDrawerItem(context,
+            text: 'Login', icon: Icons.login, route: '/login'),
         _createDrawerItem(context,
             text: 'About', icon: Icons.info, route: '/aboutus')
       ],
