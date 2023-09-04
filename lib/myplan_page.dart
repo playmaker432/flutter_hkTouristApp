@@ -13,7 +13,9 @@ class MyPlanPage extends StatefulWidget {
 
 class _MyPlan_PageState extends State<MyPlanPage> {
   SnackBar _snackBar1 = SnackBar(content: Text("The plan has been created!"));
-  List<Widget> listTiles = []; // List to store ListTile widgets
+
+  List<Widget> listPlanTiles = []; // List to store ListTile widgets
+  List<Widget> listPlaceTiles = [];
 
   // Controller for the input fields
   TextEditingController titleController = TextEditingController();
@@ -44,8 +46,15 @@ class _MyPlan_PageState extends State<MyPlanPage> {
               child: Text('Submit'),
               onPressed: () {
                 // Create a new ListTile with custom title and subtitle
+                // Depending on the active tab choice, add ListTile to the appropriate list
+                final activeList =
+                    tabList[DefaultTabController.of(context)!.index].title ==
+                            'Plans'
+                        ? listPlanTiles
+                        : listPlaceTiles;
+
                 setState(() {
-                  listTiles.add(
+                  activeList.add(
                     Card(
                       elevation: 5, // Shadow elevation
                       margin: EdgeInsets.all(10), // Margin around the Card
@@ -99,6 +108,10 @@ class _MyPlan_PageState extends State<MyPlanPage> {
         ),
         body: TabBarView(
           children: tabList.map((choice) {
+            // Depending on the active tab choice, select the appropriate list
+            final activeList =
+                choice.title == 'Plans' ? listPlanTiles : listPlaceTiles;
+
             return Center(
               child: Column(
                 children: [
@@ -113,7 +126,7 @@ class _MyPlan_PageState extends State<MyPlanPage> {
                   Expanded(
                       child: SingleChildScrollView(
                           child: Column(
-                    children: listTiles,
+                    children: activeList,
                   ))),
                 ],
               ),
@@ -125,6 +138,7 @@ class _MyPlan_PageState extends State<MyPlanPage> {
           onPressed: () {
             ScaffoldMessenger.of(context).removeCurrentSnackBar();
             ScaffoldMessenger.of(context).showSnackBar(_snackBar1);
+
             // Add a new ListTile when the button is pressed
             // setState(() {
             //   listTiles.add(

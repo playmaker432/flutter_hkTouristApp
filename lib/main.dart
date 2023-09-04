@@ -29,7 +29,10 @@ class MyApp extends StatelessWidget {
         '/': (context) => HomePage(),
         // Change p1 as homepage
         '/hkmap': (context) => HomePage(),
-        '/myplans': (context) => MyPlanPage(title: 'My Plans'),
+        '/myplans': (context) => DefaultTabController(
+              length: tabList.length, // Set the length based on your tabs
+              child: MyPlanPage(title: 'My Plans'),
+            ),
         '/weather': (context) => WeatherPage(),
         '/login': (context) => LoginPage(),
         '/aboutus': (context) => AboutPage(),
