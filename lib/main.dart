@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:helloworld/login_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'myplan_page.dart';
+import 'bookmarked_page.dart';
 import 'about_page.dart';
 import 'weather_page.dart';
 import 'hkmap_page.dart';
@@ -29,10 +29,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => HomePage(),
         // Change p1 as homepage
         '/hkmap': (context) => HomePage(),
-        '/myplans': (context) => DefaultTabController(
-              length: tabList.length, // Set the length based on your tabs
-              child: MyPlanPage(title: 'My Plans'),
-            ),
+        '/myplans': (context) => MyPlanPage(title: 'My Plans'),
         '/weather': (context) => WeatherPage(),
         '/login': (context) => LoginPage(),
         '/aboutus': (context) => AboutPage(),
