@@ -7,6 +7,7 @@ class HomePage extends StatelessWidget {
     final drawer = buildDrawer(context);
 
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: Text('Hong Kong Tourist App'),
       ),

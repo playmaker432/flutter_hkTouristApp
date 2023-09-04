@@ -5,6 +5,8 @@ import 'bookmarked_page.dart';
 import 'about_page.dart';
 import 'weather_page.dart';
 import 'hkmap_page.dart';
+import 'package:helloworld/theme/dark_theme.dart';
+import 'package:helloworld/theme/light_theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,13 +20,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        // useMaterial3: true,
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      // -------- OLD theme -----------
+      // theme: ThemeData(
+      //   // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      //   // useMaterial3: true,
+      //   primarySwatch: Colors.blue,
+      //   visualDensity: VisualDensity.adaptivePlatformDensity,
+      // ),
+
+      theme: lightTheme,
+      darkTheme: darkTheme,
+
       routes: {
         '/': (context) => HomePage(),
         // Change p1 as homepage
@@ -43,7 +49,7 @@ Widget buildDrawer(BuildContext context) {
     child: ListView(
       children: <Widget>[
         UserAccountsDrawerHeader(
-          accountName: Text('Jen'),
+          accountName: Text('Test'),
           accountEmail: Text('userGmail@gmail.com'),
           // currentAccountPicture: Image.asset('assets/waiting.gif'),
           decoration: BoxDecoration(color: Colors.grey),
