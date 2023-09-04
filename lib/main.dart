@@ -5,6 +5,7 @@ import 'bookmarked_page.dart';
 import 'about_page.dart';
 import 'weather_page.dart';
 import 'hkmap_page.dart';
+import 'setting_page.dart';
 import 'package:helloworld/theme/dark_theme.dart';
 import 'package:helloworld/theme/light_theme.dart';
 
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
       // ),
 
       theme: lightTheme,
-      darkTheme: darkTheme,
+      // darkTheme: darkTheme,
 
       routes: {
         '/': (context) => HomePage(),
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         '/weather': (context) => WeatherPage(),
         '/login': (context) => LoginPage(),
         '/aboutus': (context) => AboutPage(),
+        '/settings': (context) => SettingsPage(),
       },
     );
   }
@@ -65,7 +67,7 @@ Widget buildDrawer(BuildContext context) {
         _createDrawerItem(context,
             text: 'About', icon: Icons.info, route: '/aboutus'),
         _createDrawerItem(context,
-            text: 'Settings', icon: Icons.settings, route: '/aboutus'),
+            text: 'Settings', icon: Icons.settings, route: '/settings'),
         _createDrawerItem(context,
             text: 'Login', icon: Icons.login, route: '/login'),
       ],

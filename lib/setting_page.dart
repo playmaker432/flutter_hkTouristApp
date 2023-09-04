@@ -1,66 +1,119 @@
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'main.dart';
+import 'package:package_info/package_info.dart';
 
-class LoginPage extends StatefulWidget {
+class SettingsApp extends StatelessWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: SettingsPage(),
+    );
+  }
 }
 
-class _LoginPageState extends State<LoginPage> {
-  final GoogleSignIn googleSignIn = GoogleSignIn();
+class SettingsPage extends StatefulWidget {
+  @override
+  _SettingsPageState createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
+  bool darkModeEnabled = false;
+  bool notificationsEnabled = true;
+  double textSize = 16.0;
+  String appVersion = '0.100.0.1';
 
   @override
   Widget build(BuildContext context) {
-    final drawer = buildDrawer(context);
-
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        title: Text('Settings'),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Login',
-                style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.width * 0.1,
-                ),
-              ),
-              SizedBox(height: 25),
-              TextField(
-                decoration: InputDecoration(
-                  labelText: 'Account',
-                ),
-              ),
-              TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                ),
-              ),
-              SizedBox(height: 75),
-              ElevatedButton.icon(
-                onPressed: signInWithGoogle,
-                icon: Icon(Icons.g_mobiledata),
-                label: Text('Login with Google'),
-              ),
-            ],
+      body: ListView(
+        children: [
+          SizedBox(height: 30),
+          ListTile(
+            title: Text('Dark Mode'),
+            trailing: Switch(
+              value: darkModeEnabled,
+              onChanged: (value) {
+                setState(() {
+                  darkModeEnabled = value;
+                });
+              },
+            ),
           ),
-        ),
-      ),
-      drawer: drawer,
-    );
-  }
+          Divider(),
+          ListTile(
+            title: Text('Notifications'),
+            trailing: Switch(
+              value: notificationsEnabled,
+              onChanged: (value) {
+                setState(() {
+                  notificationsEnabled = value;
+                });
+              },
+            ),
+          ),
+          Divider(),
+          ListTile(
+            title: Text('Text Size'),
+            trailing: DropdownButton<double>(
+              value: textSize,
+              onChanged: (value) {
+                setState(() {
+                  textSize = 14;
+                });
+              },
+              items: [
+                DropdownMenuItem(
+                  value: 14.0,
+                  child: Text('Small'),
+                ),
+                DropdownMenuItem(
+                  value: 16.0,
+                  child: Text('Medium'),
+                ),
+                DropdownMenuItem(
+                  value: 18.0,
+                  child: Text('Large'),
+                ),
+              ],
+            ),
+          ),
+          Divider(),
+          // App Version Tile
+          ListTile(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('App Version'),
+                Text(appVersion), // Replace with the actual app version
+              ],
+            ),
+          ),
 
-  Future<void> signInWithGoogle() async {
-    try {
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-    } catch (error) {
-      print(error);
-    }
+          Divider(),
+          ListTile(
+            title: Text('Privacy Policy'),
+            onTap: () {
+              // Navigate to the privacy policy page
+            },
+          ),
+          Divider(),
+          ListTile(
+            title: Text('Terms of Service'),
+            onTap: () {
+              // Navigate to the terms of service page
+            },
+          ),
+          Divider(),
+          ListTile(
+            title: Text('Sign Out'),
+            onTap: () {
+              // Sign out the user
+            },
+          ),
+        ],
+      ),
+    );
   }
 }
