@@ -6,7 +6,7 @@
     <h3>Below is a rendering of the page up to the first error.</h3>
   </parsererror>
   <application android:label="helloworld" android:name="${applicationName}" android:icon="@mipmap/ic_launcher">
-    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDGDLntNAoePiQJv9q-0tSx2vp06AdD0nU" />
+    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBB-1bDjjvw3oBzwnr3A-pgFfT3091XOrM" />
     <activity android:name=".MainActivity" android:exported="true" android:launchMode="singleTop" android:theme="@style/LaunchTheme" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" android:hardwareAccelerated="true" android:windowSoftInputMode="adjustResize">
       <meta-data android:name="io.flutter.embedding.android.NormalTheme" android:resource="@style/NormalTheme" />
       <intent-filter>
@@ -15,6 +15,6 @@
       </intent-filter>
     </activity>
     <meta-data android:name="flutterEmbedding" android:value="2" />
-    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyA6TAAnmntXVs21reY_Se5IUwUbXb11gzg" />
+    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBB-1bDjjvw3oBzwnr3A-pgFfT3091XOrM" />
   </application>
 </manifest>
