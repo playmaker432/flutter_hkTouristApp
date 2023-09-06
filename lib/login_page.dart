@@ -18,40 +18,31 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         title: const Text('Login'),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Login',
-                style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.width * 0.1,
-                ),
-              ),
-              SizedBox(height: 25),
-              TextField(
-                decoration: InputDecoration(
-                  labelText: 'Account',
-                ),
-              ),
-              TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                ),
-              ),
-              SizedBox(height: 75),
-              ElevatedButton.icon(
-                onPressed: signInWithGoogle,
-                icon: Icon(Icons.g_mobiledata),
-                label: Text('Login with Google'),
-              ),
-            ],
+      body: SafeArea(
+          child: Center(
+        child: Column(children: [
+          Text(
+            'Hello Again!',
+            style: TextStyle(fontWeight: FontWeight.bold),
           ),
-        ),
-      ),
+          SizedBox(height: 10),
+          Text(
+            'Welcome back, you\'ve been missed !',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          ),
+          SizedBox(height: 20),
+
+          // Email textfield
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+            decoration: BoxDecoration(
+                color: Color(0xfff0f0f0),
+                border: Border.all(color: Colors.white),
+                borderRadius: BorderRadius.circular(12)),
+            child: TextField(),
+          )
+        ]),
+      )),
       drawer: drawer,
     );
   }
@@ -64,3 +55,39 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 }
+
+// Center(
+//         child: Padding(
+//           padding: const EdgeInsets.all(20.0),
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: [
+//               Text(
+//                 'Login',
+//                 style: TextStyle(
+//                   fontSize: MediaQuery.of(context).size.width * 0.1,
+//                 ),
+//               ),
+//               SizedBox(height: 25),
+//               TextField(
+//                 decoration: InputDecoration(
+//                   labelText: 'Account',
+//                 ),
+//               ),
+//               TextField(
+//                 obscureText: true,
+//                 decoration: InputDecoration(
+//                   labelText: 'Password',
+//                 ),
+//               ),
+//               SizedBox(height: 75),
+//               ElevatedButton.icon(
+//                 onPressed: signInWithGoogle,
+//                 icon: Icon(Icons.g_mobiledata),
+//                 label: Text('Login with Google'),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//

@@ -8,7 +8,8 @@ class AboutPage extends StatelessWidget {
         body: Center(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text("App Name"),
+          // Text("App Name"),
+          Image.asset('route_demo.jpg'),
           SizedBox(height: 16),
           Text("Version 1.0.0"),
           SizedBox(height: 16),

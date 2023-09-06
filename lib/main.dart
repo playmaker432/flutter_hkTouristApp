@@ -22,14 +22,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       // -------- OLD theme -----------
-      // theme: ThemeData(
-      //   // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      //   // useMaterial3: true,
-      //   primarySwatch: Colors.blue,
-      //   visualDensity: VisualDensity.adaptivePlatformDensity,
-      // ),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        // useMaterial3: true,
+        // primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
 
-      theme: lightTheme,
+      // -------- NEW theme -----------
+      // theme: lightTheme,
       // darkTheme: darkTheme,
 
       routes: {

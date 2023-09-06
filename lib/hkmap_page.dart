@@ -16,6 +16,7 @@ class HomePage extends StatelessWidget {
           FloatingActionButton(child: Icon(Icons.add), onPressed: testButton),
       body: ListView(
         children: <Widget>[
+          // ImageIcon(AssetImage('assets/images/route_demo.jpg')),
           _buildAttractionCard(
               'Victoria Peak',
               'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Hong_Kong_Harbour_Night_2019-06-11.jpg/800px-Hong_Kong_Harbour_Night_2019-06-11.jpg',
