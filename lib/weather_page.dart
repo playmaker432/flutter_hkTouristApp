@@ -130,13 +130,20 @@ class _WeatherScreenState extends State<WeatherPage> {
     );
   }
 
-  void fetchWeatherData() async {
+  Future<void> fetchWeatherData() async {
     const String fnwAPI =
         'https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=flw&lang=en';
 
     print('API: {$fnwAPI} called');
 
     try {
+      // Loading circle
+      // showDialog(
+      //     context: context,
+      //     builder: (context) {
+      //       return Center(child: CircularProgressIndicator());
+      //     });
+
       var response = await http.get(Uri.parse(fnwAPI));
 
       if (response.statusCode == 200) {
@@ -150,6 +157,9 @@ class _WeatherScreenState extends State<WeatherPage> {
       } else {
         print('Request failed with status: ${response.statusCode}.');
       }
+
+      // For escaping the loading circle
+      // Navigator.of(context).pop();
     } catch (e) {
       print('Error connecting to API: $e');
     }
