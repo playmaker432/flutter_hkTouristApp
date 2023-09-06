@@ -36,6 +36,31 @@ class _MyPlan_PageState extends State<MyPlanPage>
     super.dispose();
   }
 
+  Card _buildHorizontalCard(String title, String subtitle) {
+    return Card(
+      elevation: 5,
+      margin: EdgeInsets.all(10),
+      child: Container(
+        height: 100, // Fixed height
+        child: ListTile(
+          contentPadding: EdgeInsets.all(10), // Adjust padding as needed
+          leading: Container(
+            width: 80, // Fixed width for the rectangular avatar
+            height: double.infinity, // Match the height of the ListTile
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(8), // Adjust border radius
+                child: Image(
+                  image: AssetImage('images/route_demo.jpg'),
+                  fit: BoxFit.cover,
+                )),
+          ),
+          title: Text(title),
+          subtitle: Text(subtitle),
+        ),
+      ),
+    );
+  }
+
   // Function to show a pop-up dialog for user input
   Future<void> _showInputDialog(BuildContext context) async {
     return showDialog(
@@ -66,14 +91,21 @@ class _MyPlan_PageState extends State<MyPlanPage>
 
                 setState(() {
                   activeList.add(
-                    Card(
-                      elevation: 5, // Shadow elevation
-                      margin: EdgeInsets.all(10), // Margin around the Card
-                      child: ListTile(
-                        title: Text(titleController.text),
-                        subtitle: Text(subtitleController.text),
-                      ),
-                    ),
+                    _buildHorizontalCard(
+                        titleController.text, subtitleController.text),
+                    // Card(
+                    //   elevation: 5,
+                    //   margin: EdgeInsets.all(10),
+                    //   child: ListTile(
+                    //     leading: CircleAvatar(
+                    //       // Image goes here, you can use AssetImage, NetworkImage, etc.
+                    //       backgroundImage: AssetImage('images/route_demo.jpg'),
+                    //       radius: 30, // Adjust the size of the image
+                    //     ),
+                    //     title: Text(titleController.text),
+                    //     subtitle: Text(subtitleController.text),
+                    //   ),
+                    // ),
                   );
                 });
 

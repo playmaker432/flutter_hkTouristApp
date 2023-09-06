@@ -21,12 +21,14 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.grey[60],
       appBar: AppBar(
         title: Text('Register'),
       ),
       body: SafeArea(
         child: Center(
+            child: Padding(
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -118,24 +120,40 @@ class _RegisterPageState extends State<RegisterPage> {
 
               // const SizedBox(height: 25),
 
-              // Google sign-in button
-              IconButton(
-                icon: Icon(FontAwesomeIcons.google),
-                onPressed: () {
-                  // Handle Google sign-in
-                },
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Google Button
+                  Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white, // Button color
+                    ),
+                    child: IconButton(
+                      icon: Icon(FontAwesomeIcons.google), // Icon
+                      onPressed: () {
+                        // Handle Google sign-in
+                      },
+                    ),
+                  ),
+
+                  SizedBox(width: 25),
+
+                  // Apple Button
+                  Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white, // Button color
+                    ),
+                    child: IconButton(
+                      icon: Icon(FontAwesomeIcons.apple), // Icon
+                      onPressed: () {
+                        // Handle Apple sign-in
+                      },
+                    ),
+                  ),
+                ],
               ),
-
-              // const SizedBox(height: 10),
-
-              // Apple sign-in button
-              IconButton(
-                icon: Icon(FontAwesomeIcons.apple),
-                onPressed: () {
-                  // Handle Apple sign-in
-                },
-              ),
-
               const SizedBox(height: 25),
 
               // Already have an account? Sign in
@@ -158,7 +176,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ],
           ),
-        ),
+        )),
       ),
     );
   }
