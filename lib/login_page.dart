@@ -44,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
                   color: Colors.blue, // Added color
                 ),
 
-                SizedBox(height: 30), // Added spacing
+                const SizedBox(height: 10), // Adjusted spacing
 
                 // Welcome Text
                 Text(
@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-                SizedBox(height: 15), // Added spacing
+                const SizedBox(height: 15), // Adjusted spacing
 
                 // Username TextField
                 TextField(
@@ -65,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
 
                 // Password TextField
                 TextField(
@@ -76,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
 
                 // Forgot Password Text
                 Align(
@@ -92,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-                SizedBox(height: 25),
+                const SizedBox(height: 25),
 
                 // Sign In Button
                 ElevatedButton(
@@ -103,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-                SizedBox(height: 30),
+                const SizedBox(height: 30), // Adjusted spacing
 
                 // Or continue with Text
                 Row(
@@ -130,7 +130,7 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
 
-                SizedBox(height: 30),
+                const SizedBox(height: 30), // Adjusted spacing
 
                 // Google and Apple Sign In Buttons
                 Row(
@@ -143,7 +143,7 @@ class _LoginPageState extends State<LoginPage> {
                         color: Colors.white, // Button color
                       ),
                       child: IconButton(
-                        icon: Icon(FontAwesomeIcons.google), // Image path
+                        icon: Icon(FontAwesomeIcons.google), // Icon
                         onPressed: () {
                           // Handle Google sign-in
                         },
@@ -159,7 +159,7 @@ class _LoginPageState extends State<LoginPage> {
                         color: Colors.white, // Button color
                       ),
                       child: IconButton(
-                        icon: Icon(FontAwesomeIcons.apple), // Image path
+                        icon: Icon(FontAwesomeIcons.apple), // Icon
                         onPressed: () {
                           // Handle Apple sign-in
                         },
@@ -168,7 +168,7 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
 
-                SizedBox(height: 30),
+                const SizedBox(height: 30), // Adjusted spacing
 
                 // Not a member? Register now Text
                 Row(
@@ -178,12 +178,20 @@ class _LoginPageState extends State<LoginPage> {
                       'Not a member?',
                       style: TextStyle(color: Colors.grey[700]),
                     ),
-                    SizedBox(width: 4),
-                    Text(
-                      'Register now',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
+                    const SizedBox(width: 4),
+                    GestureDetector(
+                      onTap: () {
+                        // Navigate to the Register Page when tapped
+                        Navigator.pop(context);
+                        Navigator.pushNamed(context, '/register');
+                      },
+                      child: Text(
+                        'Register now',
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline,
+                        ),
                       ),
                     ),
                   ],

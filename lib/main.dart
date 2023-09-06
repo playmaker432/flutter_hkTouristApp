@@ -6,6 +6,7 @@ import 'about_page.dart';
 import 'weather_page.dart';
 import 'hkmap_page.dart';
 import 'setting_page.dart';
+import 'register_page.dart';
 import 'package:helloworld/theme/dark_theme.dart';
 import 'package:helloworld/theme/light_theme.dart';
 
@@ -23,9 +24,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       // -------- OLD theme -----------
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         // useMaterial3: true,
-        // primarySwatch: Colors.blue,
+        primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
 
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => LoginPage(),
         '/aboutus': (context) => AboutPage(),
         '/settings': (context) => SettingsPage(),
+        '/register': (context) => RegisterPage(),
       },
     );
   }
