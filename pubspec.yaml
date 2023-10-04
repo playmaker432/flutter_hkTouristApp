@@ -24,7 +24,7 @@ dependencies:
   google_sign_in: any
   
   dio: ^4.0.0
-  flutter_polyline_points: ^0.2.6
+  flutter_polyline_points: ^2.0.0
   google_maps_flutter: ^2.1.1
   intl: ^0.18.1
   package_info: ^2.0.2
